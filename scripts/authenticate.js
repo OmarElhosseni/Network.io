@@ -15,17 +15,24 @@ function grabUserData() {
   ]).result(function(profiles) {
     console.log(profiles.values[0]);
     profile = profiles.values[0];
-    document.getElementById('pass').style.display = 'block'
-    document.getElementById('signIn').style.display = 'block'
-    const pfp = document.getElementById('pfp')
-    pfp.style.display = 'block'
-    console.log(profile.pictureUrl)
-    pfp.src = profile.pictureUrl;
-    const name = document.getElementById('name');
-    name.style.display = 'block';
-    name.innerHTML = profile.firstName + ' ' + profile.lastName;
-    const email = document.getElementById('email');
-    email.style.display = 'block';
-    email.innerHTML = profile.emailAddress;
+    updateWithInfo(profile);
   });
+}
+
+function updateWithInfo(profile) {
+  document.getElementById('pass').style.display = 'block'
+  document.getElementById('signIn').style.display = 'block'
+  document.getElementById('signUp').style.display = 'block'
+  const pfp = document.getElementById('pfp')
+  pfp.style.display = 'block'
+  pfp.style.width = '200px'
+  pfp.style.height = 'auto'
+  console.log(profile.pictureUrl)
+  pfp.src = profile.pictureUrl;
+  const name = document.getElementById('name');
+  name.style.display = 'block';
+  name.innerHTML = profile.firstName + ' ' + profile.lastName;
+  const email = document.getElementById('email');
+  email.style.display = 'block';
+  email.value = profile.emailAddress;
 }
