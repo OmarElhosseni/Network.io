@@ -1,28 +1,31 @@
-// const button = document.querySelector("#signInButton");
-// button.addEventListener('click', function(event) {
-//   event.preventDefault();
-//
-//   // IN.User.authorize(function() {
-//   //   console.log('logged in');
-//   //   grabUserData();
-//   // });
-//
-// });
+
 
 function onLoad() {
   IN.Event.on(IN, "auth", grabUserData);
-  const pass = document.createElement('input');
-
 }
 
 function grabUserData() {
-  document.getElementsByClassName('hidden')[0].style.display = 'inline'
-  document.getElementsByClassName('hidden')[1].style.display = 'inline'
+  let profile = {};
   IN.API.Profile('me').fields([
-    // 'first-name', 'last-name', // Add these to get the name
-    // 'industry', 'date-of-birth', 'educations:(id,school-name)',
-    // 'positions' // Add this one to get the job history
+    'first-name', 'last-name', // Add these to get the name
+    'industry', 'date-of-birth', 'educations:(id,school-name)',
+    'positions', // Add this one to get the job history
+    'picture-url',//gets image
+    'email-address'
   ]).result(function(profiles) {
     console.log(profiles.values[0]);
+    profile = profiles.values[0];
+    document.getElementById('pass').style.display = 'block'
+    document.getElementById('signIn').style.display = 'block'
+    const pfp = document.getElementById('pfp')
+    pfp.style.display = 'block'
+    console.log(profile.pictureUrl)
+    pfp.src = profile.pictureUrl;
+    const name = document.getElementById('name');
+    name.style.display = 'block';
+    name.innerHTML = profile.firstName + ' ' + profile.lastName;
+    const email = document.getElementById('email');
+    email.style.display = 'block';
+    email.innerHTML = profile.emailAddress;
   });
 }

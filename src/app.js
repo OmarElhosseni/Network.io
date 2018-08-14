@@ -4,7 +4,9 @@ const hostname = '127.0.0.1';
 const port = 3000;
 
 const server = http.createServer((req, res) => {
-  const route = (__dirname + '/..') + (req.url !== '/' ? req.url : '/index.html');
+  const route = (__dirname + '/..')
+                + (req.url.split('/Network.io').pop() !== '/' ?
+                req.url.split('/Network.io').pop() : '/index.html');
   fs.readFile(route, 'utf8', function(err, data) {
     res.status = err ? 500 : 200;
 

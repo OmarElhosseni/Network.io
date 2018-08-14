@@ -4,7 +4,7 @@
     <title>Network.io</title>
     <base href="/">
     <meta charset="utf-8">
-    <link rel="stylesheet" href="style/auth.css">
+    <!-- <link rel="" href="Network.io/style/auth.css"> -->
     <script type="text/javascript" src="//platform.linkedin.com/in.js" defer>
         api_key: 778i3nd7n8yym4
         // authorize: true
@@ -14,31 +14,34 @@
     .hidden {
       display: none;
     }
-    #signInButton {
-      margin-left: auto;
+    .signInButton{
+      margin-top: 25%;
+      width: 20px;
+      margin-left: 44.8%;
       margin-right: auto;
       display: block;
     }
-
-    input {
+    input, button, img, p {
       margin-left: auto;
       margin-right: auto;
-      display: block;
+      text-align: center;
+      display: none;
     }
-
-    button {
-      margin-left: auto;
-      margin-right: auto;
-      display: block;
+    p {
+      margin-top: 2px;
+      margin-bottom: 2px;
     }
     </style>
 
-    <script type="text/javascript" src="/scripts/authenticate.js" defer></script>
+    <script type="text/javascript" src="Network.io/scripts/authenticate.js" defer></script>
   </head>
   <body>
-    <script id = "signInButton" type="in/Login"></script>
-    <input type="password" id="pass" class="hidden">
-    <button type="button" id="signIn" class="hidden">Enter Password</button>
+    <span class="signInButton"> <script  type="in/Login"></script></span>
+    <img class = 'hidden' id = 'pfp' src="" alt="">
+    <p class = 'hidden' id = 'name'></p>
+    <p class = 'hidden' id = 'email'></p>
+    <input type="password" id="pass" >
+    <button type="button" id="signIn" >Enter Password</button>
     <!-- <a href="#"> <img src="" alt=""> </a> -->
   </body>
 </html>
