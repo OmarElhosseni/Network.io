@@ -1,4 +1,146 @@
+body{
+   display: inline;
+   font-family: 'Source Sans Pro', sans-serif;
+}
 ul {
+   position: fixed;
+   margin-left: 10px;
+   margin-bottom: -15px;
+   list-style-type: none;
+   width: 75%;
+   padding: 0;
+   overflow: hidden;
+   background-color:rgb(40,62,74);
+}
+
+li {
+   float: left;
+}
+
+li a {
+   display: block;
+   color: white;
+   text-align: center;
+   font-size: 50px;
+   padding: 14px 16px;
+   text-decoration: none;
+   border: 1px solid white;
+   border-top-color: rgb(40,62,74);
+}
+
+li a:hover {
+   background-color: #111;
+   color: white;
+   border-bottom-color: currentColor;
+   display: inline-block;
+ line-height: 1.25;
+
+}
+
+
+#nearbyContainer{
+   height: auto;
+   width:75%;
+   margin-top: 105px
+}
+
+
+#requestsContainer{
+   height: auto;;
+   display: none;
+   width:75%;
+   margin-top: 105px;
+}
+
+#nearby{
+   border-bottom-color: rgb(116, 97, 97);
+}
+
+.user{
+   margin-left: 10px;
+background-color: antiquewhite;
+height: 200px;
+width: 100%;
+margin-top: 15px;
+margin-bottom: 10px;
+display: block;
+
+}
+
+.invitation{
+   margin-left: 10px;
+background-color:antiquewhite;
+height: 200px;
+width: 100%;
+margin-top: 15px;
+margin-bottom: 10px;
+display: block;
+}
+
+#profile{
+   text-align: center;
+   font-size: 32px;
+   background-color:antiquewhite;
+   float: right;
+   width:21%;
+   height:745px;
+   margin-right: 2.5%;
+   position: fixed;
+   margin-left:77.5%;
+
+
+}
+
+p{
+   padding: 5px;
+}
+
+.pic{
+   border-radius: 50%;
+   float:left;
+   margin-left: 50px;
+   height: 170px;
+   width: 170px;
+   overflow: hidden;
+   margin-top: 15px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.name{
+margin-left: 30px;
+display: inline-block;
+}
+
+.connect{
+   border-radius: 20%;
+   border: 5px solid rgb(133, 122, 122);
+   padding: 10px;
+   color: white;
+   margin-right: 20px;
+   margin-top: 20px;
+   float: right;
+   background-color: green;
+   font-size: 50px;
+   text-decoration: none;
+}
+.profilePic{
+   margin: 17px auto 0 auto;
+   width: 150px;
+   height: 150px;
+   overflow: hidden;
+   border-radius: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+img {
+   height: 250px;
+}
+
+/* ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -40,4 +182,4 @@ li a:hover {
     height: 500px;
     margin-top: 20px;
     display: none;
-}
+} */

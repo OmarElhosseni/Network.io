@@ -1,15 +1,14 @@
 // Initialize Firebase
-var config = {
-  apiKey: "AIzaSyCJjZ-8B-jHFfGqflEo7t-WmSNn84_AyMk",
-  authDomain: "networkio-2ffd5.firebaseapp.com",
-  databaseURL: "https://networkio-2ffd5.firebaseio.com",
-  projectId: "networkio-2ffd5",
-  storageBucket: "networkio-2ffd5.appspot.com",
-  messagingSenderId: "546255366020"
-};
-firebase.initializeApp(config);
+// var config = {
+//   apiKey: "AIzaSyCJjZ-8B-jHFfGqflEo7t-WmSNn84_AyMk",
+//   authDomain: "networkio-2ffd5.firebaseapp.com",
+//   databaseURL: "https://networkio-2ffd5.firebaseio.com",
+//   projectId: "networkio-2ffd5",
+//   storageBucket: "networkio-2ffd5.appspot.com",
+//   messagingSenderId: "546255366020"
+// };
+// firebase.initializeApp(config);
 
-let profile = {};
 
 const txtName = document.getElementById('name');
 const pfp = document.getElementById('pfp')
@@ -22,6 +21,7 @@ const btnLogout = document.getElementById('logOut');
 function onLoad() {
   IN.Event.on(IN, "auth", grabUserData);
 }
+let profile = {};
 
 function grabUserData() {
 
@@ -55,7 +55,6 @@ btnSignup.addEventListener('click', e => {//Sign up new account
  const pass = txtPass.value;
  const nameU = txtName.textContent;
  const auth = firebase.auth();
- const inbox = [''];
  const pfpU = pfp.src;
  const account = profile.publicProfileUrl;
  const positions = profile.positions;
@@ -66,9 +65,8 @@ btnSignup.addEventListener('click', e => {//Sign up new account
    firebase.database().ref('users/' + auth.currentUser.uid).set({
      EMAIL : email,
      NAME : nameU,
-     PFP : pfpU,
+     PFP : pfpU ? pfpU : '',
      ACOUNT: account,
-     INBOX : inbox,
      POSITIONS : positions
    });
  });
