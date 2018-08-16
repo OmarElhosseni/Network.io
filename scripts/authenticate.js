@@ -9,7 +9,7 @@
 // };
 // firebase.initializeApp(config);
 
-
+const link = document.getElementById('link');
 const txtName = document.getElementById('name');
 const pfp = document.getElementById('pfp')
 const txtEmail = document.getElementById('email');
@@ -96,4 +96,5 @@ function updateWithInfo(profile) {
 
 function revealLogOut() {
   btnLogout.style.display = 'block';
+  link.style.display = 'block';
 }

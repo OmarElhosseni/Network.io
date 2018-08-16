@@ -55,7 +55,7 @@ function addProfile(uid, container) {
     const name = person.NAME;
     const email = person.EMAIL;
     const img = person.PFP;
-    const acc = person.ACCOUNT;
+    const acc = person.ACOUNT;
     const positionObj = person.POSITIONS && person.POSITIONS.values ? person.POSITIONS.values[0] : '';
     let position = '';
     if(positionObj.title) {
@@ -86,21 +86,24 @@ function addProfile(uid, container) {
     picDivOuter.classList.add("pic");
 
     const picDiv = document.createElement("img");
-    if(img) picDiv.src = img;
-    else picDiv.src = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973461_960_720.png'
+    if(img !== 'http://localhost:3000/undefined') {
+      picDiv.src = img;
+    }
+    else {
+    picDiv.src = 'https://www.weact.org/wp-content/uploads/2016/10/Blank-profile.png'
+  }
 
     picDivOuter.appendChild(picDiv);
     userDiv.appendChild(picDivOuter);
     userDiv.appendChild(nameDiv);
     if(positionDiv) userDiv.appendChild(positionDiv);
     userDiv.appendChild(connectDiv);
-
+    userDiv.className = 'personProfile'
     document.getElementById(container).appendChild(userDiv);
   });
 }
 
 nearby.addEventListener("click", function() {
-    updateWithProfiles()
     document.querySelector("#nearbyContainer").style.display = "block";
     document.querySelector("#requestsContainer").style.display = "none";
 });
