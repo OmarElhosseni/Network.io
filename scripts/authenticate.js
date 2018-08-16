@@ -9,25 +9,29 @@ var config = {
 };
 firebase.initializeApp(config);
 
+let profile = {};
+
 const txtName = document.getElementById('name');
 const pfp = document.getElementById('pfp')
 const txtEmail = document.getElementById('email');
 const txtPass = document.getElementById('pass');
 const btnSignin = document.getElementById('signIn');
 const btnSignup = document.getElementById('signUp');
+const btnLogout = document.getElementById('logOut');
 
 function onLoad() {
   IN.Event.on(IN, "auth", grabUserData);
 }
 
 function grabUserData() {
-  let profile = {};
+
   IN.API.Profile('me').fields([
     'first-name', 'last-name', // Add these to get the name
     'industry', 'date-of-birth', 'educations:(id,school-name)',
     'positions', // Add this one to get the job history
     'picture-url',//gets image
-    'email-address'
+    'email-address',//
+    'public-profile-url'
   ]).result(function(profiles) {
     console.log(profiles.values[0]);
     profile = profiles.values[0];
@@ -35,13 +39,26 @@ function grabUserData() {
   });
 }
 
+btnSignin.addEventListener('click', e => {//Log in users
+ const email = txtEmail.value;
+ const pass = txtPass.value;
+ const auth = firebase.auth();
+
+ const promise = auth.signInWithEmailAndPassword(email,pass);
+ promise.catch(e => console.log(e.message));
+
+ revealLogOut();
+})
+
 btnSignup.addEventListener('click', e => {//Sign up new account
  const email = txtEmail.value;
  const pass = txtPass.value;
  const nameU = txtName.textContent;
  const auth = firebase.auth();
- const inbox = [];
+ const inbox = [''];
  const pfpU = pfp.src;
+ const account = profile.publicProfileUrl;
+ const positions = profile.positions;
 
  // writeUserData(email, name);
  const promise = auth.createUserWithEmailAndPassword(email,pass);
@@ -49,11 +66,19 @@ btnSignup.addEventListener('click', e => {//Sign up new account
    firebase.database().ref('users/' + auth.currentUser.uid).set({
      EMAIL : email,
      NAME : nameU,
-     INBOX : inbox,
      PFP : pfpU,
+     ACOUNT: account,
+     INBOX : inbox,
+     POSITIONS : positions
    });
  });
  promise.catch(function() { console.log(e.message)});
+ revealLogOut();
+})
+
+btnLogout.addEventListener('click', e => {//Logs out user
+ firebase.auth().signOut();
+ btnLogout.style.display = 'none';
 })
 
 function updateWithInfo(profile) {
@@ -69,4 +94,8 @@ function updateWithInfo(profile) {
   txtName.textContent = profile.firstName + ' ' + profile.lastName;
   email.style.display = 'block';
   email.value = profile.emailAddress;
+}
+
+function revealLogOut() {
+  btnLogout.style.display = 'block';
 }
